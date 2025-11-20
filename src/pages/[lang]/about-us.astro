@@ -1,0 +1,238 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'id' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'id' | 'en');
+
+const team = [
+  {
+    name: "John Doe",
+    role: "Chief Executive Officer",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAD_tJYawbQSYplv16SsKTNA2hfYGl8e23XqQsflSiOnC6AbVZPu1dskOLA3jEVUzHEu6GqsOhPLWiCWBx7p9TSyGNeyny-oaqMDeQ3Q0ruHDRfrVbO1wLIzQn1zvAdhTKDoOtT1qibYntH9m2Cl2wGE-8FEchzQuRYzQjFEssFyq8Z8KOsnN13Dgu3DIR6Hk7qVVt8SoCh2zXJCZJ-DFLZp3LSK_dfG4Bmx_Rhh8azn9raXk_7R7eI8Hc4fb0Kvr9Llzm--qb0htc",
+  },
+  {
+    name: "Jane Smith",
+    role: "Chief Technology Officer",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA6qtr7NF-L1gqem3OWiCVlmz3mQmIqBVzGx8BbSWaQWmTcVj6FOf91zk4Vfoz8DiXM9BluA91ZqwJF_46DXEubxQcnUwFN40V__uasjSSqVbqSw3fLwTUpNHYh02kIjhXea8dCliZe53rDVW-vYTKiyu-rSLkeZ7R5dcc0xn_yYUBgSg6Tx3nbhm7S6BH7EF9UoGKX1rd2I4WeJp3tA3_qd9_T16s7GzmaMtwHyl_CCwquJO8EmrMgzMYBsNsIzL5eO0DIIRPsLqE",
+  },
+  {
+    name: "Michael Johnson",
+    role: "Lead Developer",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuB9q-94dp2qu-oApmXGpWeYE9uGFDDXety3aGil5I7T_nqWHZhe8X0PZKOmncEk9_lO5UdkfrybQK7h3moIV9LpLaASawh6jhtJFdL7w09i3kJjAa7KFjW4_7Kh1IOq7ztbBoxGKfL4M4V-8RhFafEkMsInshCc9gxF4BwLog83hBo0MQnp34yhrdjS7QpWW6bC9lCSRryTqr8hY4kuig6sRl-AHHSXZw8WacHspZwog45tOpCM0gRd695W9T8PwTsoCWOL57ezufo",
+  },
+  {
+    name: "Emily Davis",
+    role: "Project Manager",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAbfuR1S96_3GgPlMV2qYaqSe0EHuQmO_ev8yA6fYnH3_8I2pwYlNw9hNjtTrEtHe2e_MRV6S8_IIqqRgGeSm-svtoUSYmGgNdL05197AmZIc1X3AbE-hr8rk0R7Q-L6RakTxnqSifoPn8tRFbwyyZosJnbojQ98nf2dn5zT-Bt_TFPyZ661owEDoGeGd_FzdlGQ6J1WlMTscNpOaH_IqUixBSOOvlkbTv8e8wSAUIHGM2aS9Gv9YJwQuyDVe2lfPbUsMTbIB6z_B8",
+  },
+];
+---
+
+<Layout title="Tentang Kami - ConsultIT">
+  <main class="flex-1">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col items-center justify-center text-center py-24 sm:py-32 md:py-40">
+        <div class="flex flex-col gap-4 max-w-4xl">
+          <p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">Tentang Kami</p>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tighter">
+            Mendorong Inovasi, Memberdayakan Masa Depan
+          </h1>
+          <h2 class="text-subtext-light dark:text-subtext-dark text-lg font-normal leading-relaxed max-w-3xl mx-auto">
+            Kami adalah tim ahli teknologi yang bersemangat dalam memecahkan masalah kompleks dan
+            menciptakan solusi yang berdampak bagi klien kami di seluruh dunia.
+          </h2>
+        </div>
+      </div>
+
+      <div class="py-16 md:py-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="flex flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-background-light dark:bg-card-dark p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span class="material-symbols-outlined text-3xl">visibility</span>
+            <div class="flex flex-col gap-2">
+              <h2 class="text-xl font-semibold leading-tight">Visi Kami</h2>
+              <p class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed">
+                Menjadi mitra teknologi terdepan yang mendorong inovasi dan pertumbuhan berkelanjutan
+                bagi klien kami di seluruh dunia.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-background-light dark:bg-card-dark p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+            <div class="flex flex-col gap-2">
+              <h2 class="text-xl font-semibold leading-tight">Misi Kami</h2>
+              <p class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed">
+                Memberikan solusi IT yang disesuaikan, andal, dan canggih melalui keahlian mendalam
+                dan layanan konsultasi yang luar biasa.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-background-light dark:bg-card-dark p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            <span class="material-symbols-outlined text-3xl">handshake</span>
+            <div class="flex flex-col gap-2">
+              <h2 class="text-xl font-semibold leading-tight">Nilai-Nilai Kami</h2>
+              <p class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed">
+                Integritas, Kolaborasi, Keunggulan, dan Inovasi adalah pilar utama yang menopang
+                budaya kerja dan hubungan kami dengan klien.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-16 md:py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div class="flex flex-col gap-4">
+            <h2 class="text-3xl md:text-4xl font-semibold leading-tight tracking-tighter">
+              Perjalanan Kami Sejauh Ini
+            </h2>
+            <p class="text-subtext-light dark:text-subtext-dark text-lg leading-relaxed">
+              Dari ide sederhana hingga menjadi mitra teknologi terpercaya, setiap langkah dalam
+              sejarah kami didorong oleh semangat inovasi dan komitmen terhadap kesuksesan klien.
+            </p>
+          </div>
+          <div class="w-full">
+            <div class="border-l border-border-light dark:border-border-dark pl-8 space-y-10">
+              <div class="relative">
+                <div
+                  class="absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background-light dark:bg-background-dark"
+                >
+                  <div class="h-2 w-2 rounded-full bg-text-light dark:bg-text-dark"></div>
+                </div>
+                <p class="text-lg font-semibold">Pendirian Perusahaan</p>
+                <p class="text-base text-subtext-light dark:text-subtext-dark">2018</p>
+              </div>
+              <div class="relative">
+                <div
+                  class="absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background-light dark:bg-background-dark"
+                >
+                  <div class="h-2 w-2 rounded-full bg-text-light dark:bg-text-dark"></div>
+                </div>
+                <p class="text-lg font-semibold">Proyek Besar Pertama</p>
+                <p class="text-base text-subtext-light dark:text-subtext-dark">2019</p>
+              </div>
+              <div class="relative">
+                <div
+                  class="absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background-light dark:bg-background-dark"
+                >
+                  <div class="h-2 w-2 rounded-full bg-text-light dark:bg-text-dark"></div>
+                </div>
+                <p class="text-lg font-semibold">Ekspansi Tim</p>
+                <p class="text-base text-subtext-light dark:text-subtext-dark">2021</p>
+              </div>
+              <div class="relative">
+                <div
+                  class="absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-background-light dark:bg-background-dark"
+                >
+                  <div class="h-2 w-2 rounded-full bg-text-light dark:bg-text-dark"></div>
+                </div>
+                <p class="text-lg font-semibold">Penghargaan Industri</p>
+                <p class="text-base text-subtext-light dark:text-subtext-dark">2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-16 md:py-24">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-border-light dark:bg-border-dark border border-border-light dark:border-border-dark rounded-xl overflow-hidden"
+        >
+          <div
+            class="flex flex-col gap-2 p-8 bg-background-light dark:bg-background-dark text-center items-center"
+          >
+            <p class="text-subtext-light dark:text-subtext-dark text-base font-medium leading-normal">
+              Proyek Selesai
+            </p>
+            <p class="tracking-tighter text-5xl font-semibold leading-tight">150+</p>
+          </div>
+          <div
+            class="flex flex-col gap-2 p-8 bg-background-light dark:bg-background-dark text-center items-center"
+          >
+            <p class="text-subtext-light dark:text-subtext-dark text-base font-medium leading-normal">
+              Klien Puas
+            </p>
+            <p class="tracking-tighter text-5xl font-semibold leading-tight">98%</p>
+          </div>
+          <div
+            class="flex flex-col gap-2 p-8 bg-background-light dark:bg-background-dark text-center items-center"
+          >
+            <p class="text-subtext-light dark:text-subtext-dark text-base font-medium leading-normal">
+              Tahun Pengalaman
+            </p>
+            <p class="tracking-tighter text-5xl font-semibold leading-tight">5+</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-10 py-16 md:py-24">
+        <div class="flex flex-col gap-4 text-center items-center">
+          <h2 class="tracking-tighter text-3xl font-semibold leading-tight md:text-4xl max-w-2xl">
+            Perkenalkan Tim Kami
+          </h2>
+          <p class="text-subtext-light dark:text-subtext-dark text-lg font-normal leading-relaxed max-w-3xl">
+            Kami adalah sekelompok ahli strategi, desainer, dan developer yang bersemangat dalam
+            membangun solusi digital yang luar biasa.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+          {
+            team.map((member) => (
+              <div class="flex flex-col items-center text-center group">
+                <div class="relative w-40 h-40">
+                  <img
+                    class="rounded-full object-cover w-full h-full grayscale transition-all duration-300 group-hover:grayscale-0"
+                    alt={`Professional headshot of ${member.name}`}
+                    src={member.image}
+                  />
+                </div>
+                <div class="mt-4 flex flex-col items-center">
+                  <h3 class="text-lg font-semibold">{member.name}</h3>
+                  <p class="text-subtext-light dark:text-subtext-dark text-sm font-medium">
+                    {member.role}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="bg-background-dark dark:bg-card-dark rounded-xl p-10 md:p-16 my-16 md:my-24">
+        <div class="flex flex-col gap-6 items-center text-center">
+          <h2 class="text-3xl md:text-4xl font-semibold text-text-dark max-w-2xl tracking-tighter">
+            Siap Membangun Masa Depan?
+          </h2>
+          <p class="text-base md:text-lg text-text-muted-dark max-w-2xl leading-relaxed">
+            Mari wujudkan ide Anda menjadi solusi digital yang nyata. Hubungi kami untuk konsultasi
+            gratis dan temukan bagaimana kami dapat membantu bisnis Anda berkembang.
+          </p>
+          <button
+            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 bg-white text-black text-sm font-medium leading-normal hover:bg-neutral-200 transition-colors"
+          >
+            <span class="truncate">Hubungi Kami</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

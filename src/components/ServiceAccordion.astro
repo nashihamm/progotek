@@ -1,0 +1,135 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  tags: string[];
+  isOpen?: boolean;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<div class="flex flex-col gap-4" id="service-accordion">
+  {
+    services.map((service, index) => (
+      <div class:list={["border-b border-border-light dark:border-border-dark py-6 service-item", service.isOpen ? "open" : ""]} data-index={index}>
+        <div class="flex justify-between items-center cursor-pointer accordion-header">
+          <h3 class:list={[
+            "text-2xl font-semibold transition-colors duration-300",
+            service.isOpen ? "text-primary" : "text-text-light dark:text-text-dark"
+          ]}>
+            {service.title}
+          </h3>
+          <button
+            class:list={[
+              "p-2 rounded-full transition-all duration-300",
+              service.isOpen ? "transform rotate-45" : ""
+            ]}
+            type="button"
+          >
+            <span
+              class:list={[
+                "material-symbols-outlined !text-3xl transition-colors duration-300",
+                service.isOpen ? "text-primary" : "text-subtext-light dark:text-subtext-dark"
+              ]}
+            >
+              add
+            </span>
+          </button>
+        </div>
+        <div
+          class:list={[
+            "grid transition-[grid-template-rows] duration-500 ease-in-out accordion-content",
+            service.isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          ]}
+        >
+          <div class="overflow-hidden">
+            <div class="pt-6 flex flex-col md:flex-row gap-8 items-start">
+              <p class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed md:w-1/2">
+                {service.description}
+              </p>
+              <div class="md:w-1/2 flex flex-wrap gap-2">
+                {service.tags.map((tag) => (
+                  <span class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordion = document.getElementById('service-accordion');
+    if (!accordion) return;
+
+    const items = accordion.querySelectorAll('.service-item');
+    
+    items.forEach((item) => {
+      const header = item.querySelector('.accordion-header');
+      const content = item.querySelector('.accordion-content');
+      const title = item.querySelector('h3');
+      const button = item.querySelector('button');
+      const icon = button?.querySelector('.material-symbols-outlined');
+      
+      if (!header || !content || !title || !button || !icon) return;
+      
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        
+        // Close all other items
+        items.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('open');
+            const otherContent = otherItem.querySelector('.accordion-content');
+            const otherTitle = otherItem.querySelector('h3');
+            const otherButton = otherItem.querySelector('button');
+            const otherIcon = otherButton?.querySelector('.material-symbols-outlined');
+            
+            if (otherContent) otherContent.classList.remove('grid-rows-[1fr]');
+            if (otherContent) otherContent.classList.add('grid-rows-[0fr]');
+            if (otherTitle) {
+              otherTitle.classList.remove('text-primary');
+              otherTitle.classList.add('text-text-light', 'dark:text-text-dark');
+            }
+            if (otherButton) otherButton.classList.remove('rotate-45');
+            if (otherIcon) {
+              otherIcon.classList.remove('text-primary');
+              otherIcon.classList.add('text-subtext-light', 'dark:text-subtext-dark');
+            }
+          }
+        });
+        
+        // Toggle current item
+        if (isOpen) {
+          item.classList.remove('open');
+          content.classList.remove('grid-rows-[1fr]');
+          content.classList.add('grid-rows-[0fr]');
+          title.classList.remove('text-primary');
+          title.classList.add('text-text-light', 'dark:text-text-dark');
+          button.classList.remove('rotate-45');
+          icon.classList.remove('text-primary');
+          icon.classList.add('text-subtext-light', 'dark:text-subtext-dark');
+        } else {
+          item.classList.add('open');
+          content.classList.remove('grid-rows-[0fr]');
+          content.classList.add('grid-rows-[1fr]');
+          title.classList.remove('text-text-light', 'dark:text-text-dark');
+          title.classList.add('text-primary');
+          button.classList.add('rotate-45');
+          icon.classList.remove('text-subtext-light', 'dark:text-subtext-dark');
+          icon.classList.add('text-primary');
+        }
+      });
+    });
+  });
+</script>

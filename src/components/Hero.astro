@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+  imageAlt: string;
+}
+
+const { title, description, imageUrl, imageAlt } = Astro.props;
+---
+
+<section class="relative h-[80vh] min-h-[600px] w-full">
+  <div class="absolute inset-0 overflow-hidden rounded-b-3xl">
+    <img alt={imageAlt} class="h-full w-full object-cover" src={imageUrl} />
+    <div class="absolute inset-0 bg-black/50"></div>
+  </div>
+  <div class="relative z-10 flex h-full items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="text-white">
+          <h1 class="text-5xl font-bold leading-tight tracking-tighter md:text-7xl">
+            {title}
+          </h1>
+          <p class="mt-6 text-lg md:text-xl max-w-xl">
+            {description}
+          </p>
+        </div>
+        <div class="hidden md:flex justify-end">
+          <div class="flex flex-col gap-4">
+            <div
+              class="bg-white/90 dark:bg-background-dark/80 backdrop-blur-sm p-6 rounded-xl shadow-lg w-80 text-center"
+            >
+              <p class="text-subtext-light dark:text-subtext-dark text-sm">
+                Beroperasi Sejak
+              </p>
+              <p class="text-5xl font-bold text-text-light dark:text-text-dark mt-2">
+                2010
+              </p>
+            </div>
+            <div class="bg-primary p-6 rounded-xl shadow-lg w-80">
+              <p class="text-white font-semibold">
+                14+ TAHUN. STARTUP HINGGA KORPORASI. SEMUA TAHAPAN, SATU KONSTAN.
+              </p>
+              <p class="text-white/80 text-sm mt-3">
+                Dari UKM hingga multinasional—di seluruh siklus hidup bisnis: peluncuran,
+                pertumbuhan, dan kedewasaan; TechCorp telah menjadi denominator umum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

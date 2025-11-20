@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>IT Consulting Firm - Solusi IT Transformatif</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3b82f6", // Updated primary color to a modern blue
+              "background-light": "#f8f9fa",
+              "background-dark": "#0a0a0a",
+              "text-light": "#1f2937",
+              "text-dark": "#e5e7eb",
+              "subtext-light": "#6b7280",
+              "subtext-dark": "#9ca3af",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .dark body {
+        background-color: #0a0a0a;
+      }
+      .grainy {
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDo0AC2K86u3B7MaI7ZAmyXnXU5ZGPT3kBMugd6e7D0FDX9ssgqkADpH9rZ-QIY8GUhGQ8gsnK-wAI57F18fqPwfoCLHqI63ebmufbcCSY8MV0Mg2SgdOX5sCC0wCQd_K5992YjLrS5xhWVDbHtn6yQkdvSIfh_UqYCO__gtBdW9THAd4IT_3WLQLx51m8VjBwBWrGyAMqrN_EctO5cIhOenV0r8hfUeSPD3f0NvW0OZBi5_WypqXh95BVWfcU6mbPanaRDYC4qPno);
+        background-size: 500px 500px;
+        background-repeat: repeat;
+        opacity: 0.1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark antialiased selection:bg-primary/20"
+  >
+    <div
+      class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden"
+    >
+      <div class="grainy hidden dark:block"></div>
+      <div class="layout-container flex h-full grow flex-col">
+              <!-- navbar -->
+      <header class="sticky top-4 z-50 px-4">
+        <div class="max-w-6xl mx-auto">
+          <div
+            class="flex items-center justify-between whitespace-nowrap bg-background-dark/80 dark:bg-background-light/5 text-text-dark dark:text-text-dark backdrop-blur-lg rounded-full px-6 py-3 shadow-lg">
+            <div class="flex items-center gap-3 text-white">
+              <div class="size-6 text-white">
+                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_6_535)">
+                    <path clip-rule="evenodd"
+                      d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                      fill="currentColor" fill-rule="evenodd"></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_6_535">
+                      <rect fill="white" height="48" width="48"></rect>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <h2 class="text-base font-semibold tracking-[-0.01em]">ConsultIT</h2>
+            </div>
+            <div class="hidden md:flex flex-1 justify-center gap-8">
+              <div class="flex items-center gap-6">
+                <a class="text-sm font-medium text-text-dark/70 hover:text-text-dark transition-colors"
+                  href="/index.html">Home</a>
+                <a class="text-sm font-medium text-text-dark/70 hover:text-text-dark transition-colors"
+                  href="services.html">Services</a>
+                <a class="text-sm font-medium text-text-dark" href="about-us.html">About Us</a>
+                <a class="text-sm font-medium text-text-dark/70 hover:text-text-dark transition-colors" href="cases.html">Case
+                  Studies</a>
+                <a class="text-sm font-medium text-text-dark/70 hover:text-text-dark transition-colors"
+                  href="contact-us.html">Contact</a>
+              </div>
+            </div>
+
+             
+            <div class="hidden md:flex items-center gap-2">
+              <button
+                class="flex min-w-[36px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 w-9 bg-transparent hover:bg-white/10 text-white transition-colors">
+                <span class="material-symbols-outlined text-xl">search</span>
+              </button>
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-4 bg-white text-black text-sm font-medium leading-normal hover:bg-neutral-200 transition-colors">
+                <span class="truncate">Get a Quote</span>
+              </button>
+            </div>
+            <div class="md:hidden">
+              <button class="text-text-dark">
+                <span class="material-symbols-outlined">menu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- end navbar -->
+        <main class="flex-1">
+          <section class="relative h-[80vh] min-h-[600px] w-full">
+            <div class="absolute inset-0 overflow-hidden rounded-b-3xl">
+              <img
+                alt="Tim bisnis berkolaborasi di ruang kantor modern"
+                class="h-full w-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg1pNxiOk2EXuTRm3zS3tL4RQMnlZ3J2VzpkJ2VJDLGgHIBzpJuBhy_LhHlelsdGXP3ub2jjEPTrx8ltvP6WaoNX38kBPhcUyODIp0nuWuWGkAisq7RnHEEpWHkFLg4FdcpV9TNtcWR219l-RoDJ2tlT4f81gJ13ralP-jHTgHnEfxs9fohCilzyRGqHrWkh7TE78WR3I1vjgDp_m8wE9FdHQr63qlKOXIffjOcVftidjn2B_o44Mi2hz3vZsN3Hm2uPVRoRDq4Fs"
+              />
+              <div class="absolute inset-0 bg-black/50"></div>
+            </div>
+            <div class="relative z-10 flex h-full items-center">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div class="text-white">
+                    <h1
+                      class="text-5xl font-bold leading-tight tracking-tighter md:text-7xl"
+                    >
+                      Solusi IT Transformatif untuk Bisnis Modern
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl max-w-xl">
+                      Kami memberdayakan bisnis melalui teknologi inovatif,
+                      strategi yang terbukti, dan pengalaman digital yang
+                      berkelanjutan.
+                    </p>
+                  </div>
+                  <div class="hidden md:flex justify-end">
+                    <div class="flex flex-col gap-4">
+                      <div
+                        class="bg-white/90 dark:bg-background-dark/80 backdrop-blur-sm p-6 rounded-xl shadow-lg w-80 text-center"
+                      >
+                        <p
+                          class="text-subtext-light dark:text-subtext-dark text-sm"
+                        >
+                          Beroperasi Sejak
+                        </p>
+                        <p
+                          class="text-5xl font-bold text-text-light dark:text-text-dark mt-2"
+                        >
+                          2010
+                        </p>
+                      </div>
+                      <div class="bg-primary p-6 rounded-xl shadow-lg w-80">
+                        <p class="text-white font-semibold">
+                          14+ TAHUN. STARTUP HINGGA KORPORASI. SEMUA TAHAPAN,
+                          SATU KONSTAN.
+                        </p>
+                        <p class="text-white/80 text-sm mt-3">
+                          Dari UKM hingga multinasional—di seluruh siklus hidup
+                          bisnis: peluncuran, pertumbuhan, dan kedewasaan;
+                          TechCorp telah menjadi denominator umum.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                  <p class="text-primary font-semibold">Tentang Kami</p>
+                  <h2
+                    class="text-4xl font-bold leading-tight tracking-tighter mt-2 md:text-5xl"
+                  >
+                    Mendorong Inovasi, Memberdayakan Pertumbuhan
+                  </h2>
+                  <p
+                    class="mt-4 text-lg text-subtext-light dark:text-subtext-dark leading-relaxed"
+                  >
+                    TechCorp adalah mitra strategis Anda dalam menavigasi
+                    lanskap teknologi yang terus berkembang. Sejak 2010, kami
+                    telah berdedikasi untuk memberikan solusi IT yang tidak
+                    hanya menyelesaikan tantangan saat ini tetapi juga
+                    mengantisipasi kebutuhan masa depan, memastikan bisnis Anda
+                    tetap terdepan dalam persaingan.
+                  </p>
+                  <div class="mt-8 flex items-center gap-6">
+                    <div class="flex flex-col items-center text-center">
+                      <p class="text-5xl font-bold text-primary">100+</p>
+                      <p
+                        class="text-sm font-medium text-subtext-light dark:text-subtext-dark mt-1"
+                      >
+                        Klien Puas
+                      </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                      <p class="text-5xl font-bold text-primary">250+</p>
+                      <p
+                        class="text-sm font-medium text-subtext-light dark:text-subtext-dark mt-1"
+                      >
+                        Proyek Selesai
+                      </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                      <p class="text-5xl font-bold text-primary">14+</p>
+                      <p
+                        class="text-sm font-medium text-subtext-light dark:text-subtext-dark mt-1"
+                      >
+                        Tahun Pengalaman
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="relative h-80 lg:h-96 w-full">
+                  <img
+                    alt="Ruang kerja kolaboratif dengan para profesional teknologi yang sedang berdiskusi"
+                    class="w-full h-full object-cover rounded-xl shadow-lg"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg1pNxiOk2EXuTRm3zS3tL4RQMnlZ3J2VzpkJ2VJDLGgHIBzpJuBhy_LhHlelsdGXP3ub2jjEPTrx8ltvP6WaoNX38kBPhcUyODIp0nuWuWGkAisq7RnHEEpWHkFLg4FdcpV9TNtcWR219l-RoDJ2tlT4f81gJ13ralP-jHTgHnEfxs9fohCilzyRGqHrWkh7TE78WR3I1vjgDp_m8wE9FdHQr63qlKOXIffjOcVftidjn2B_o44Mi2hz3vZsN3Hm2uPVRoRDq4Fs"
+                  />
+                  <div
+                    class="absolute -bottom-4 -right-4 size-24 bg-primary/20 rounded-full hidden lg:block"
+                  ></div>
+                  <div
+                    class="absolute -top-4 -left-4 size-32 border-8 border-background-light dark:border-background-dark rounded-full hidden lg:block"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            class="py-16 md:py-24 bg-background-light dark:bg-background-dark/50"
+          >
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="text-left mb-12">
+                <p class="text-primary font-semibold">Layanan Kami</p>
+                <h2
+                  class="text-4xl font-bold leading-tight tracking-tighter mt-2 md:text-5xl"
+                >
+                  Layanan Kami
+                </h2>
+              </div>
+              <div class="flex flex-col gap-4">
+                <div
+                  class="border-b border-border-light dark:border-border-dark py-6 group"
+                >
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <h3
+                      class="text-2xl font-semibold text-text-light dark:text-text-dark"
+                    >
+                      Konsultasi Cloud &amp; Infrastruktur
+                    </h3>
+                    <button
+                      class="p-2 rounded-full transition-all duration-300 transform rotate-45"
+                    >
+                      <span
+                        class="material-symbols-outlined !text-3xl text-primary"
+                        >add</span
+                      >
+                    </button>
+                  </div>
+                  <div
+                    class="grid grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out"
+                  >
+                    <div class="overflow-hidden">
+                      <div
+                        class="pt-6 flex flex-col md:flex-row gap-8 items-start"
+                      >
+                        <p
+                          class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed md:w-1/2"
+                        >
+                          Optimalkan infrastruktur Anda dengan solusi cloud yang
+                          skalabel, aman, dan efisien untuk pertumbuhan bisnis
+                          yang berkelanjutan. Kami membantu Anda merancang,
+                          membangun, dan mengelola lingkungan cloud yang sesuai
+                          dengan kebutuhan Anda.
+                        </p>
+                        <div class="md:w-1/2 flex flex-wrap gap-2">
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Strategi Cloud</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Migrasi Cloud</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Manajemen Infrastruktur</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >DevOps</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-b border-border-light dark:border-border-dark py-6 group"
+                >
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <h3
+                      class="text-2xl font-semibold text-text-light dark:text-text-dark"
+                    >
+                      Keamanan Siber Proaktif
+                    </h3>
+                    <button
+                      class="p-2 rounded-full transition-colors duration-300"
+                    >
+                      <span
+                        class="material-symbols-outlined !text-3xl text-subtext-light dark:text-subtext-dark group-hover:text-primary"
+                        >add</span
+                      >
+                    </button>
+                  </div>
+                  <div
+                    class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-in-out group-hover:grid-rows-[1fr]"
+                  >
+                    <div class="overflow-hidden">
+                      <div
+                        class="pt-6 flex flex-col md:flex-row gap-8 items-start"
+                      >
+                        <p
+                          class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed md:w-1/2"
+                        >
+                          Lindungi aset digital Anda dari ancaman siber dengan
+                          strategi keamanan berlapis dan proaktif. Dari
+                          penilaian risiko hingga respons insiden, kami adalah
+                          mitra keamanan Anda.
+                        </p>
+                        <div class="md:w-1/2 flex flex-wrap gap-2">
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Penilaian Risiko</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Keamanan Jaringan</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Manajemen Identitas</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Respons Insiden</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="border-b border-border-light dark:border-border-dark py-6 group"
+                >
+                  <div class="flex justify-between items-center cursor-pointer">
+                    <h3
+                      class="text-2xl font-semibold text-text-light dark:text-text-dark"
+                    >
+                      Pengembangan Perangkat Lunak Kustom
+                    </h3>
+                    <button
+                      class="p-2 rounded-full transition-colors duration-300"
+                    >
+                      <span
+                        class="material-symbols-outlined !text-3xl text-subtext-light dark:text-subtext-dark group-hover:text-primary"
+                        >add</span
+                      >
+                    </button>
+                  </div>
+                  <div
+                    class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-in-out group-hover:grid-rows-[1fr]"
+                  >
+                    <div class="overflow-hidden">
+                      <div
+                        class="pt-6 flex flex-col md:flex-row gap-8 items-start"
+                      >
+                        <p
+                          class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed md:w-1/2"
+                        >
+                          Bangun aplikasi kustom yang andal dan skalabel untuk
+                          memenuhi kebutuhan bisnis unik Anda. Kami mengikuti
+                          metodologi agile untuk memberikan solusi perangkat
+                          lunak berkualitas tinggi tepat waktu.
+                        </p>
+                        <div class="md:w-1/2 flex flex-wrap gap-2">
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Aplikasi Web</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Aplikasi Mobile</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >Integrasi Sistem</span
+                          >
+                          <span
+                            class="px-3 py-1 text-sm font-medium rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                            >UI/UX Design</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-col gap-12 @container">
+                <div class="flex flex-col gap-4 text-center">
+                  <h1
+                    class="text-4xl font-bold leading-tight tracking-tighter md:text-5xl max-w-3xl mx-auto"
+                  >
+                    Pendekatan Kami Sederhana
+                  </h1>
+                  <p
+                    class="text-subtext-light dark:text-subtext-dark text-lg leading-relaxed max-w-3xl mx-auto"
+                  >
+                    Kami fokus pada fungsionalitas, kecepatan, dan kejelasan,
+                    memastikan setiap proyek memiliki tujuan yang jelas tanpa
+                    kompleksitas yang tidak perlu.
+                  </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div
+                    class="flex flex-1 gap-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-background-dark/70 p-6 flex-col text-center items-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  >
+                    <div class="text-primary bg-primary/10 rounded-full p-3">
+                      <span class="material-symbols-outlined !text-3xl"
+                        >verified_user</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <h2 class="text-lg font-semibold leading-tight">
+                        Tim Ahli
+                      </h2>
+                      <p
+                        class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed"
+                      >
+                        Tim kami terdiri dari para profesional bersertifikat
+                        dengan pengalaman luas di industri teknologi.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-1 gap-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-background-dark/70 p-6 flex-col text-center items-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  >
+                    <div class="text-primary bg-primary/10 rounded-full p-3">
+                      <span class="material-symbols-outlined !text-3xl"
+                        >data_exploration</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <h2 class="text-lg font-semibold leading-tight">
+                        Berbasis Data
+                      </h2>
+                      <p
+                        class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed"
+                      >
+                        Setiap solusi didasarkan pada analisis data yang cermat
+                        untuk hasil yang terukur dan optimal.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-1 gap-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-background-dark/70 p-6 flex-col text-center items-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  >
+                    <div class="text-primary bg-primary/10 rounded-full p-3">
+                      <span class="material-symbols-outlined !text-3xl"
+                        >support_agent</span
+                      >
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <h2 class="text-lg font-semibold leading-tight">
+                        Dukungan Penuh
+                      </h2>
+                      <p
+                        class="text-subtext-light dark:text-subtext-dark text-base font-normal leading-relaxed"
+                      >
+                        Kami menyediakan dukungan berkelanjutan untuk memastikan
+                        sistem Anda berjalan lancar.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="py-16 md:py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div
+                class="bg-white dark:bg-background-dark/70 border border-border-light dark:border-border-dark rounded-xl p-8 md:p-12 text-center"
+              >
+                <h2 class="text-4xl font-bold tracking-tighter">
+                  Siap Membangun Masa Depan Digital Anda?
+                </h2>
+                <p
+                  class="mt-4 text-lg leading-relaxed text-subtext-light dark:text-subtext-dark"
+                >
+                  Hubungi kami hari ini untuk konsultasi dan temukan bagaimana
+                  kami dapat membantu bisnis Anda berkembang.
+                </p>
+                <div class="mt-8 flex items-center justify-center gap-x-6">
+                  <button
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary text-white text-base font-semibold leading-normal tracking-tight hover:bg-primary/90 transition-colors duration-300"
+                  >
+                    <span class="truncate">Jadwalkan Konsultasi</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer
+          class="bg-white dark:bg-background-dark/50 border-t border-border-light dark:border-border-dark"
+        >
+          <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                  <div class="size-7 text-primary">
+                    <svg
+                      fill="none"
+                      viewBox="0 0 48 48"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl font-bold">TechCorp</h2>
+                </div>
+                <p class="text-sm text-subtext-light dark:text-subtext-dark">
+                  Jl. Teknologi No. 123, Jakarta, Indonesia
+                </p>
+                <p class="text-sm text-subtext-light dark:text-subtext-dark">
+                  info@techcorp.com
+                </p>
+              </div>
+              <div class="md:col-span-2 grid grid-cols-2 gap-8">
+                <div>
+                  <h3
+                    class="text-sm font-semibold leading-6 text-text-light dark:text-text-dark"
+                  >
+                    Layanan
+                  </h3>
+                  <ul class="mt-4 space-y-3" role="list">
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Konsultasi Cloud</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Keamanan Siber</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Pengembangan Software</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Analitik Data</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3
+                    class="text-sm font-semibold leading-6 text-text-light dark:text-text-dark"
+                  >
+                    Perusahaan
+                  </h3>
+                  <ul class="mt-4 space-y-3" role="list">
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Tentang Kami</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Studi Kasus</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Karir</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="text-sm leading-6 text-subtext-light dark:text-subtext-dark hover:text-primary transition-colors"
+                        href="#"
+                        >Kontak</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h3
+                  class="text-sm font-semibold leading-6 text-text-light dark:text-text-dark"
+                >
+                  Ikuti Kami
+                </h3>
+                <div class="flex mt-4 space-x-6">
+                  <a
+                    class="text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors"
+                    href="#"
+                  >
+                    <span class="sr-only">LinkedIn</span>
+                    <svg
+                      aria-hidden="true"
+                      class="h-6 w-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                      ></path>
+                    </svg>
+                  </a>
+                  <a
+                    class="text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors"
+                    href="#"
+                  >
+                    <span class="sr-only">Twitter</span>
+                    <svg
+                      aria-hidden="true"
+                      class="h-6 w-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.424.727-.666 1.581-.666 2.477 0 1.649.84 3.1 2.124 3.951-.783-.025-1.518-.24-2.158-.596v.058c0 2.306 1.638 4.228 3.81 4.671-.397.108-.816.166-1.25.166-.307 0-.604-.03-.893-.083.606 1.892 2.36 3.269 4.44 3.306-1.624 1.274-3.667 2.032-5.892 2.032-.383 0-.761-.022-1.134-.067 2.099 1.349 4.594 2.133 7.275 2.133 8.718 0 13.486-7.234 13.486-13.486 0-.205-.005-.41-.013-.615.925-.668 1.725-1.503 2.362-2.45z"
+                      ></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-12 border-t border-border-light dark:border-border-dark pt-8 text-center text-sm text-subtext-light dark:text-subtext-dark"
+            >
+              <p>© 2024 TechCorp. Seluruh hak cipta dilindungi.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

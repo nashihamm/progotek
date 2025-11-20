@@ -1,0 +1,93 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/translations';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentPath = Astro.url.pathname;
+
+// Get base path without language prefix
+const basePath = currentPath.replace(/^\/(id|en)/, '') || '/';
+const langPrefix = `/${lang}`;
+---
+
+<header class="sticky top-4 z-50 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div
+      class="flex items-center justify-between whitespace-nowrap bg-background-dark/80 dark:bg-background-light/5 text-text-dark dark:text-text-dark backdrop-blur-lg rounded-full px-6 py-3 shadow-lg"
+    >
+      <div class="flex items-center gap-3 text-white">
+        <div class="size-6 text-white">
+          <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_6_535)">
+              <path
+                clip-rule="evenodd"
+                d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                fill="currentColor"
+                fill-rule="evenodd"></path>
+            </g>
+            <defs>
+              <clipPath id="clip0_6_535">
+                <rect fill="white" height="48" width="48"></rect>
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <h2 class="text-base font-semibold tracking-[-0.01em]">ConsultIT</h2>
+      </div>
+      <div class="hidden md:flex flex-1 justify-center gap-8">
+        <div class="flex items-center gap-6">
+          <a
+            class:list={[
+              "text-sm font-medium transition-colors",
+              basePath === "/" ? "text-text-dark" : "text-text-dark/70 hover:text-text-dark"
+            ]}
+            href={`${langPrefix}/`}>{t('nav.home')}</a>
+          <a
+            class:list={[
+              "text-sm font-medium transition-colors",
+              basePath.startsWith("/services") ? "text-text-dark" : "text-text-dark/70 hover:text-text-dark"
+            ]}
+            href={`${langPrefix}/services`}>{t('nav.services')}</a>
+          <a
+            class:list={[
+              "text-sm font-medium transition-colors",
+              basePath.startsWith("/about-us") ? "text-text-dark" : "text-text-dark/70 hover:text-text-dark"
+            ]}
+            href={`${langPrefix}/about-us`}>{t('nav.about')}</a>
+          <a
+            class:list={[
+              "text-sm font-medium transition-colors",
+              basePath.startsWith("/cases") || basePath.startsWith("/show-case") ? "text-text-dark" : "text-text-dark/70 hover:text-text-dark"
+            ]}
+            href={`${langPrefix}/cases`}>{t('nav.cases')}</a>
+          <a
+            class:list={[
+              "text-sm font-medium transition-colors",
+              basePath.startsWith("/contact-us") ? "text-text-dark" : "text-text-dark/70 hover:text-text-dark"
+            ]}
+            href={`${langPrefix}/contact-us`}>{t('nav.contact')}</a>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-2">
+        <LanguageSwitcher />
+        <button
+          class="flex min-w-[36px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 w-9 bg-transparent hover:bg-white/10 text-white transition-colors"
+        >
+          <span class="material-symbols-outlined text-xl">search</span>
+        </button>
+        <button
+          class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-4 bg-white text-black text-sm font-medium leading-normal hover:bg-neutral-200 transition-colors"
+        >
+          <span class="truncate">{t('nav.getQuote')}</span>
+        </button>
+      </div>
+      <div class="md:hidden">
+        <button class="text-text-dark">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

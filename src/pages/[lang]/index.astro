@@ -1,0 +1,179 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import ServiceAccordion from "../../components/ServiceAccordion.astro";
+import FeatureCard from "../../components/FeatureCard.astro";
+import CTA from "../../components/CTA.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'id' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'id' | 'en');
+
+const services = [
+  {
+    title: "Konsultasi Cloud & Infrastruktur",
+    description:
+      "Optimalkan infrastruktur Anda dengan solusi cloud yang skalabel, aman, dan efisien untuk pertumbuhan bisnis yang berkelanjutan. Kami membantu Anda merancang, membangun, dan mengelola lingkungan cloud yang sesuai dengan kebutuhan Anda.",
+    tags: ["Strategi Cloud", "Migrasi Cloud", "Manajemen Infrastruktur", "DevOps"],
+    isOpen: true,
+  },
+  {
+    title: "Keamanan Siber Proaktif",
+    description:
+      "Lindungi aset digital Anda dari ancaman siber dengan strategi keamanan berlapis dan proaktif. Dari penilaian risiko hingga respons insiden, kami adalah mitra keamanan Anda.",
+    tags: ["Penilaian Risiko", "Keamanan Jaringan", "Manajemen Identitas", "Respons Insiden"],
+  },
+  {
+    title: "Pengembangan Perangkat Lunak Kustom",
+    description:
+      "Bangun aplikasi kustom yang andal dan skalabel untuk memenuhi kebutuhan bisnis unik Anda. Kami mengikuti metodologi agile untuk memberikan solusi perangkat lunak berkualitas tinggi tepat waktu.",
+    tags: ["Aplikasi Web", "Aplikasi Mobile", "Integrasi Sistem", "UI/UX Design"],
+  },
+];
+---
+
+<Layout title={`IT Consulting Firm - ${t('hero.title')}`}>
+  <main class="flex-1">
+    <!-- Hero with scroll reveal -->
+    <div class="scroll-reveal">
+      <Hero
+        title={t('hero.title')}
+        description={t('hero.description')}
+        imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuBg1pNxiOk2EXuTRm3zS3tL4RQMnlZ3J2VzpkJ2VJDLGgHIBzpJuBhy_LhHlelsdGXP3ub2jjEPTrx8ltvP6WaoNX38kBPhcUyODIp0nuWuWGkAisq7RnHEEpWHkFLg4FdcpV9TNtcWR219l-RoDJ2tlT4f81gJ13ralP-jHTgHnEfxs9fohCilzyRGqHrWkh7TE78WR3I1vjgDp_m8wE9FdHQr63qlKOXIffjOcVftidjn2B_o44Mi2hz3vZsN3Hm2uPVRoRDq4Fs"
+        imageAlt="Tim bisnis berkolaborasi di ruang kantor modern"
+      />
+    </div>
+
+    <!-- About Section -->
+    <section class="py-16 md:py-24 scroll-reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="text-left">
+            <p class="text-primary font-semibold">{t('about.label')}</p>
+            <h2 class="text-4xl font-bold leading-tight tracking-tighter mt-2 md:text-5xl">
+              {t('about.title')}
+            </h2>
+            <p class="mt-4 text-lg text-subtext-light dark:text-subtext-dark leading-relaxed">
+              {t('about.description')}
+            </p>
+            <div class="mt-8 flex items-center gap-6">
+              <div class="flex flex-col items-center text-center">
+                <p class="text-5xl font-bold text-primary">100+</p>
+                <p class="text-sm font-medium text-subtext-light dark:text-subtext-dark mt-1">
+                  {t('about.clients')}
+                </p>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <p class="text-5xl font-bold text-primary">250+</p>
+                <p class="text-sm font-medium text-subtext-light dark:text-subtext-dark mt-1">
+                  {t('about.projects')}
+                </p>
+              </div>
+              <div class="flex flex-col items-center text-center">
+                <p class="text-5xl font-bold text-primary">14+</p>
+                <p class="text-sm font-medium text-subtext-light dark:text-subtext-dark mt-1">
+                  {t('about.experience')}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="relative h-80 lg:h-96 w-full">
+            <img
+              alt="Ruang kerja kolaboratif dengan para profesional teknologi yang sedang berdiskusi"
+              class="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-500 hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg1pNxiOk2EXuTRm3zS3tL4RQMnlZ3J2VzpkJ2VJDLGgHIBzpJuBhy_LhHlelsdGXP3ub2jjEPTrx8ltvP6WaoNX38kBPhcUyODIp0nuWuWGkAisq7RnHEEpWHkFLg4FdcpV9TNtcWR219l-RoDJ2tlT4f81gJ13ralP-jHTgHnEfxs9fohCilzyRGqHrWkh7TE78WR3I1vjgDp_m8wE9FdHQr63qlKOXIffjOcVftidjn2B_o44Mi2hz3vZsN3Hm2uPVRoRDq4Fs"
+            />
+            <div
+              class="absolute -bottom-4 -right-4 size-24 bg-primary/20 rounded-full hidden lg:block"
+            >
+            </div>
+            <div
+              class="absolute -top-4 -left-4 size-32 border-8 border-background-light dark:border-background-dark rounded-full hidden lg:block"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16 md:py-24 bg-background-light dark:bg-background-dark/50 scroll-reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-left mb-12">
+          <p class="text-primary font-semibold">{t('services.label')}</p>
+          <h2 class="text-4xl font-bold leading-tight tracking-tighter mt-2 md:text-5xl">
+            {t('services.title')}
+          </h2>
+        </div>
+        <ServiceAccordion services={services} />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 md:py-24 scroll-reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-12 @container">
+          <div class="flex flex-col gap-4 text-center">
+            <h1 class="text-4xl font-bold leading-tight tracking-tighter md:text-5xl max-w-3xl mx-auto">
+              {t('features.title')}
+            </h1>
+            <p class="text-subtext-light dark:text-subtext-dark text-lg leading-relaxed max-w-3xl mx-auto">
+              {t('features.description')}
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="scroll-reveal">
+              <FeatureCard icon="verified_user" title={t('features.expert.title')} description={t('features.expert.desc')} />
+            </div>
+            <div class="scroll-reveal animation-delay-200">
+              <FeatureCard icon="data_exploration" title={t('features.data.title')} description={t('features.data.desc')} />
+            </div>
+            <div class="scroll-reveal animation-delay-400">
+              <FeatureCard icon="support_agent" title={t('features.support.title')} description={t('features.support.desc')} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="scroll-reveal">
+      <CTA
+        title={t('cta.title')}
+        description={t('cta.description')}
+        buttonText={t('cta.button')}
+      />
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Scroll Reveal Animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, observerOptions);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Observe all scroll-reveal elements
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>

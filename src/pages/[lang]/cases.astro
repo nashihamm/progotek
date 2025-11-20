@@ -1,0 +1,106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'id' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'id' | 'en');
+
+const caseStudies = [
+  {
+    title: "Cloud Infrastructure Overhaul for a Fintech Leader",
+    description: "Achieved 30% cost reduction and improved scalability through a seamless cloud migration.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc",
+  },
+  {
+    title: "Cybersecurity Shield for a Healthcare Provider",
+    description: "Implemented a multi-layered security protocol, preventing 99.9% of cyber threats.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc",
+  },
+  {
+    title: "Data-Driven Growth for an E-commerce Platform",
+    description: "Increased customer retention by 20% using advanced data analytics and personalization.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc",
+  },
+  {
+    title: "Custom CRM Development for a Sales Team",
+    description: "Boosted sales team efficiency by 40% with a tailor-made software solution.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc",
+  },
+  {
+    title: "Scalable Cloud Solution for a Startup",
+    description: "Enabled rapid market entry and growth with a flexible and cost-effective cloud setup.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc",
+  },
+  {
+    title: "AI-Powered Analytics for a Retail Giant",
+    description: "Optimized supply chain operations by leveraging predictive analytics and machine learning.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc",
+  },
+];
+---
+
+<Layout title="Case Studies - ConsultIT">
+  <main class="flex-grow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+      <div class="text-center max-w-4xl mx-auto mb-16 md:mb-20">
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">Case Studies</h1>
+        <p class="text-subtext-light dark:text-subtext-dark text-lg font-normal leading-relaxed mt-6 max-w-2xl mx-auto">
+          Every project we take on is designed for long-term success. Explore our work.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 pt-10">
+        {
+          caseStudies.map((study) => (
+            <a
+              href="/show-case"
+              class="group relative flex cursor-pointer flex-col overflow-hidden rounded-xl border border-border-light dark:border-border-dark"
+            >
+              <div class="w-full overflow-hidden aspect-[4/3]">
+                <img
+                  class="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  src={study.image}
+                  alt={study.title}
+                />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+              <div class="flex h-full flex-col justify-end p-6">
+                <h3 class="text-white text-lg font-semibold leading-normal transition-transform duration-300 ease-in-out group-hover:-translate-y-8">
+                  {study.title}
+                </h3>
+                <p class="mt-2 text-slate-300 text-base font-normal leading-relaxed opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                  {study.description}
+                </p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-24 md:mt-32 bg-background-light dark:bg-card-dark rounded-2xl p-8 md:p-16">
+        <div class="flex flex-col items-center justify-center gap-6 text-center">
+          <div>
+            <h2 class="text-4xl font-bold leading-tight">Ready to Start Your Project?</h2>
+            <p class="text-subtext-light dark:text-subtext-dark text-lg mt-4 max-w-xl mx-auto">
+              Let's talk about how our expertise can drive your business forward.
+            </p>
+          </div>
+          <button
+            class="flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-primary text-white text-base font-semibold leading-normal hover:bg-primary/90 transition-colors shadow-lg mt-4"
+          >
+            <span class="truncate">Schedule a Free Consultation</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,309 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'id' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'id' | 'en');
+
+const services = [
+  {
+    title: "Konsultasi & Strategi Web",
+    description:
+      "Kami membantu Anda merancang arah terbaik untuk website, landing page, dan web-app. Mulai dari analisis kebutuhan, arsitektur sistem, hingga rekomendasi teknologi yang tepat.",
+    features: [
+      "Analisis Kebutuhan Bisnis",
+      "Strategi Website & Web-App",
+      "Arsitektur Sistem Modern"
+    ],
+    image: "https://images.unsplash.com/photo-1544108191-2f7b533b37b0?q=80&w=600&auto=format&fit=crop",
+    isOpen: true,
+  },
+  {
+    title: "Pembuatan Landing Page Profesional",
+    description:
+      "Tingkatkan branding dan konversi dengan landing page cepat, modern, dan dirancang secara strategis untuk bisnis Anda.",
+    features: [
+      "Desain Modern & Clean",
+      "Optimasi Kecepatan",
+      "Copywriting Konversi"
+    ],
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Pengembangan Website Bisnis",
+    description:
+      "Bangun website profesional yang responsif dan mudah dikelola. Cocok untuk company profile, portofolio, personal branding, atau website bisnis lainnya.",
+    features: [
+      "Website Modern & Responsive",
+      "Integrasi Form & API",
+      "SEO On-Page Dasar"
+    ],
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Pengembangan Web-App Kustom",
+    description:
+      "Kami membangun web-app yang scalable, cepat, dan aman untuk kebutuhan bisnis Anda—mulai dari dashboard admin hingga aplikasi internal.",
+    features: [
+      "Web-App Kustom",
+      "Dashboard Admin",
+      "Integrasi API & Sistem"
+    ],
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "UI/UX & Optimasi Pengalaman Pengguna",
+    description:
+      "Pastikan website atau aplikasi Anda mudah digunakan, nyaman, dan memberikan pengalaman terbaik bagi pengguna.",
+    features: [
+      "Audit UI/UX",
+      "Perbaikan Alur Pengguna",
+      "Wireframe & Prototyping"
+    ],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    title: "Strategi Digital & Brand Online",
+    description:
+      "Kami membantu Anda membangun kehadiran online yang kuat melalui strategi digital yang tepat dan konsisten.",
+    features: [
+      "Branding untuk Website",
+      "Digital Roadmap",
+      "Optimasi Konten"
+    ],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop",
+  },
+];
+
+---
+
+<Layout title="Layanan Konsultasi IT - ConsultIT">
+  <main class="flex-1">
+    <section class="py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-left">
+          <p class="text-sm font-semibold uppercase tracking-wider text-primary mb-3">{t('services.label')}</p>
+          <h1 class="text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            {t('servicesPage.title')}
+          </h1>
+          <p class="mt-8 text-lg text-subtext-light dark:text-subtext-dark max-w-2xl">
+            {t('servicesPage.description')}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-24 sm:pb-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto flex flex-col gap-4" id="service-accordion">
+          {
+            services.map((service, index) => (
+              <div
+                class:list={[
+                  "border-b border-border-light dark:border-border-dark py-8 service-item",
+                  index === 0 ? "border-t open" : "",
+                ]}
+                data-index={index}
+              >
+                <div class="flex justify-between items-center cursor-pointer accordion-header">
+                  <h3 class:list={[
+                    "text-2xl sm:text-3xl font-medium transition-colors duration-300",
+                    service.isOpen ? "text-primary" : "text-text-light dark:text-text-dark"
+                  ]}>
+                    {service.title}
+                  </h3>
+                  <div class:list={[
+                    "w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300",
+                    service.isOpen ? "border-primary rotate-45" : "border-border-light dark:border-border-dark"
+                  ]}>
+                    <span class:list={[
+                      "material-symbols-outlined transition-colors duration-300",
+                      service.isOpen ? "text-primary" : "text-text-light dark:text-text-dark"
+                    ]}>
+                      add
+                    </span>
+                  </div>
+                </div>
+                <div class:list={[
+                  "grid transition-[grid-template-rows] duration-500 ease-in-out accordion-content",
+                  service.isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                ]}>
+                  <div class="overflow-hidden">
+                    <div class="pt-8 grid md:grid-cols-3 gap-8">
+                      <div class="md:col-span-2">
+                        <p class="text-subtext-light dark:text-subtext-dark mb-6">
+                          {service.description}
+                        </p>
+                        <h4 class="font-bold text-text-light dark:text-text-dark mb-4">
+                          {t('servicesPage.keyFeatures')}
+                        </h4>
+                        <ul class="space-y-3">
+                          {service.features.map((feature) => (
+                            <li class="flex items-start">
+                              <span class="material-symbols-outlined text-primary mr-3 mt-1 text-xl">
+                                check_circle
+                              </span>
+                              <span class="text-subtext-light dark:text-subtext-dark">
+                                {feature}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div class="space-y-4">
+                        <div
+                          class="aspect-video w-full rounded-lg bg-cover bg-center"
+                          style={`background-image: url('${service.image}')`}
+                        />
+                        <button class="w-full min-w-[84px] cursor-pointer inline-flex items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-primary/10 text-primary text-sm font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-primary/20">
+                          <span class="truncate">{t('services.learnMore')}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const accordion = document.getElementById('service-accordion');
+        if (!accordion) return;
+
+        const items = accordion.querySelectorAll('.service-item');
+        
+        items.forEach((item) => {
+          const header = item.querySelector('.accordion-header');
+          const content = item.querySelector('.accordion-content');
+          const title = item.querySelector('h3');
+          const iconContainer = item.querySelector('.w-10');
+          const icon = iconContainer?.querySelector('.material-symbols-outlined');
+          
+          if (!header || !content || !title || !iconContainer || !icon) return;
+          
+          header.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+            
+            // Close all other items
+            items.forEach((otherItem) => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('open');
+                const otherContent = otherItem.querySelector('.accordion-content');
+                const otherTitle = otherItem.querySelector('h3');
+                const otherIconContainer = otherItem.querySelector('.w-10');
+                const otherIcon = otherIconContainer?.querySelector('.material-symbols-outlined');
+                
+                if (otherContent) {
+                  otherContent.classList.remove('grid-rows-[1fr]');
+                  otherContent.classList.add('grid-rows-[0fr]');
+                }
+                if (otherTitle) {
+                  otherTitle.classList.remove('text-primary');
+                  otherTitle.classList.add('text-text-light', 'dark:text-text-dark');
+                }
+                if (otherIconContainer) {
+                  otherIconContainer.classList.remove('border-primary', 'rotate-45');
+                  otherIconContainer.classList.add('border-border-light', 'dark:border-border-dark');
+                }
+                if (otherIcon) {
+                  otherIcon.classList.remove('text-primary');
+                  otherIcon.classList.add('text-text-light', 'dark:text-text-dark');
+                }
+              }
+            });
+            
+            // Toggle current item
+            if (isOpen) {
+              item.classList.remove('open');
+              content.classList.remove('grid-rows-[1fr]');
+              content.classList.add('grid-rows-[0fr]');
+              title.classList.remove('text-primary');
+              title.classList.add('text-text-light', 'dark:text-text-dark');
+              iconContainer.classList.remove('border-primary', 'rotate-45');
+              iconContainer.classList.add('border-border-light', 'dark:border-border-dark');
+              icon.classList.remove('text-primary');
+              icon.classList.add('text-text-light', 'dark:text-text-dark');
+            } else {
+              item.classList.add('open');
+              content.classList.remove('grid-rows-[0fr]');
+              content.classList.add('grid-rows-[1fr]');
+              title.classList.remove('text-text-light', 'dark:text-text-dark');
+              title.classList.add('text-primary');
+              iconContainer.classList.remove('border-border-light', 'dark:border-border-dark');
+              iconContainer.classList.add('border-primary', 'rotate-45');
+              icon.classList.remove('text-text-light', 'dark:text-text-dark');
+              icon.classList.add('text-primary');
+            }
+          });
+        });
+      });
+    </script>
+
+    <section class="py-24 sm:py-32 bg-card-light dark:bg-card-dark rounded-t-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div class="text-left">
+            <h2 class="text-4xl font-bold tracking-tight sm:text-5xl">
+              {t('servicesPage.demoTitle')}
+            </h2>
+            <p class="mt-6 text-lg text-subtext-light dark:text-subtext-dark max-w-lg">
+              {t('servicesPage.demoDesc')}
+            </p>
+          </div>
+          <div class="bg-background-light dark:bg-background-dark p-8 sm:p-12 rounded-xl shadow-lg">
+            <form action="#" class="space-y-6" method="POST">
+              <div>
+                <label class="block text-sm font-medium" for="nama-lengkap">{t('servicesPage.fullName')}</label>
+                <input
+                  class="mt-2 block w-full rounded-lg border-0 bg-white dark:bg-card-dark py-3 px-4 shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark focus:ring-2 focus:ring-primary"
+                  id="nama-lengkap"
+                  name="nama-lengkap"
+                  type="text"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium" for="email">{t('servicesPage.companyEmail')}</label>
+                <input
+                  class="mt-2 block w-full rounded-lg border-0 bg-white dark:bg-card-dark py-3 px-4 shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark focus:ring-2 focus:ring-primary"
+                  id="email"
+                  name="email"
+                  type="email"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium" for="layanan">{t('servicesPage.serviceInterest')}</label>
+                <select
+                  class="mt-2 block w-full rounded-lg border-0 bg-white dark:bg-card-dark py-3 px-4 shadow-sm ring-1 ring-inset ring-border-light dark:ring-border-dark focus:ring-2 focus:ring-primary"
+                  id="layanan"
+                  name="layanan"
+                >
+                  {services.map((service) => <option>{service.title}</option>)}
+                </select>
+              </div>
+              <button
+                class="flex w-full justify-center rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-colors"
+                type="submit"
+              >
+                {t('servicesPage.submitDemo')}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

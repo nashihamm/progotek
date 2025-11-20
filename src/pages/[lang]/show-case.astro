@@ -1,0 +1,162 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'id' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'id' | 'en');
+---
+
+<Layout title="Case Study Detail - ConsultIT">
+  <main class="flex-grow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="mb-12">
+        <a
+          class="inline-flex items-center gap-2 text-primary font-medium group text-sm"
+          href="/cases"
+        >
+          <span
+            class="material-symbols-outlined transition-transform duration-300 group-hover:-translate-x-1"
+            >arrow_back</span
+          >
+          <span>Back to Portfolio</span>
+        </a>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+          <p class="text-sm font-semibold text-primary/70 mb-2">Cloud Infrastructure</p>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tighter">
+            Cloud Infrastructure Overhaul for a Fintech Leader
+          </h1>
+          <p class="text-subtext-light dark:text-subtext-dark text-lg mt-4 max-w-2xl mx-auto">
+            Achieved 30% cost reduction and improved scalability through a seamless cloud migration
+            to AWS.
+          </p>
+        </div>
+
+        <div
+          class="bg-white dark:bg-card-dark rounded-xl shadow-sm overflow-hidden mb-16 border border-border-light dark:border-border-dark"
+        >
+          <img
+            alt="Fintech project showcase"
+            class="w-full h-auto object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAPluHVK5SOwtpbCeDfoxV_H85XWe83TbPh2uf5KEMyTYSlgnCPlYn3aGDQ3ar2OtPRxRk-zmAn92yHb43tpq4en9BqYsJSvs3kSVZA9cJW0FMx92eqQL31mmSc_atPnZN5R2oUELmCWMauABj77AgxOZfzYLppKXKWq_aa9eE86xzI23pUjW413NRn1-Hi7CPUKqyYxC3kemViYhRMsoSxRYzQ_Fqx-ZjhfZXlwUuOA8W-xGZ1QnobzFFn2A842PomAmPqalLxUc"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div class="md:col-span-1">
+            <div class="space-y-6">
+              <div>
+                <h3
+                  class="text-sm font-semibold text-subtext-light dark:text-subtext-dark tracking-wider uppercase mb-2"
+                >
+                  Client
+                </h3>
+                <p class="text-base font-medium">Fintech Solutions Inc.</p>
+              </div>
+              <div>
+                <h3
+                  class="text-sm font-semibold text-subtext-light dark:text-subtext-dark tracking-wider uppercase mb-2"
+                >
+                  Services
+                </h3>
+                <p class="text-base font-medium">
+                  Cloud Migration, DevOps, Scalability Consulting
+                </p>
+              </div>
+              <div>
+                <h3
+                  class="text-sm font-semibold text-subtext-light dark:text-subtext-dark tracking-wider uppercase mb-2"
+                >
+                  Timeline
+                </h3>
+                <p class="text-base font-medium">6 Months</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="md:col-span-2 space-y-10 text-lg text-subtext-light dark:text-subtext-dark leading-relaxed"
+          >
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">
+                The Challenge
+              </h2>
+              <p>
+                Fintech Solutions Inc. was experiencing rapid growth, but their on-premise
+                infrastructure couldn't keep up. They faced significant challenges with scalability,
+                rising maintenance costs, and slow deployment cycles, which hampered their ability to
+                innovate and respond to market demands.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">
+                Our Solution
+              </h2>
+              <p>
+                We devised a comprehensive cloud migration strategy tailored to their specific needs.
+                This involved a phased migration to Amazon Web Services (AWS), containerizing
+                applications using Docker and Kubernetes for better portability, and implementing a
+                full CI/CD pipeline to automate deployments and improve efficiency.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">
+                The Results
+              </h2>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <span
+                    ><strong>30% Reduction in Operational Costs:</strong> By moving to a pay-as-you-go
+                    cloud model, the client significantly cut down on hardware and maintenance expenses.</span
+                  >
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <span
+                    ><strong>5x Faster Deployment Cycles:</strong> The new CI/CD pipeline and automated
+                    infrastructure provisioning reduced deployment times from weeks to just hours.</span
+                  >
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                  <span
+                    ><strong>Enhanced Scalability & Reliability:</strong> The new AWS infrastructure
+                    provided auto-scaling capabilities, ensuring 99.99% uptime and seamless performance
+                    during peak traffic loads.</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="bg-white dark:bg-card-dark border-l-4 border-primary p-6 rounded-lg shadow-sm"
+            >
+              <p class="text-lg italic text-subtext-light dark:text-subtext-dark leading-relaxed">
+                "Working with ConsultIT was a game-changer for us. Their expertise in cloud solutions
+                not only modernized our infrastructure but also positioned us for future growth. The
+                results speak for themselves."
+              </p>
+              <p class="mt-4 font-semibold text-text-light dark:text-text-dark">
+                — CEO, Fintech Solutions Inc.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

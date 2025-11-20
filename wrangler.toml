@@ -1,0 +1,22 @@
+# Cloudflare Pages Configuration
+# https://developers.cloudflare.com/pages/
+
+name = "consultit"
+compatibility_date = "2024-01-15"
+
+[build]
+command = "pnpm run build"
+cwd = ""
+watch_dir = "src"
+
+[build.upload]
+format = "directory"
+dir = "dist"
+
+# Environment variables (set in Cloudflare dashboard)
+# GA4_ID = "G-XXXXXXXXXX"
+# CLARITY_ID = "YOUR_CLARITY_ID"
+
+# Custom domains (configure in Cloudflare dashboard)
+# progotek.pages.dev
+# www.progotek.pages.dev

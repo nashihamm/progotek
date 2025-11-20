@@ -1,0 +1,8 @@
+Contact: mailto:security@progotek.pages.dev
+Contact: https://progotek.pages.dev/security
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://progotek.pages.dev/pgp-key.txt
+Preferred-Languages: en, id
+Canonical: https://progotek.pages.dev/.well-known/security.txt
+Policy: https://progotek.pages.dev/security-policy
+Acknowledgments: https://progotek.pages.dev/security-acknowledgments

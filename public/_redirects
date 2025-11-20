@@ -1,0 +1,12 @@
+# Cloudflare Pages Redirects
+
+# Redirect root to default language
+/  /id/  302
+
+# Sitemap redirects
+/sitemap_index.xml  /sitemap.xml  301
+/feed  /rss.xml  301
+
+# Force HTTPS (handled by Cloudflare)
+# Trailing slash handling
+/*/  /:splat  301

@@ -1,0 +1,177 @@
+---
+// Performance monitoring component for Core Web Vitals
+---
+
+<script is:inline>
+  // Core Web Vitals monitoring with reporting
+  (function() {
+    if (typeof window === 'undefined') return;
+    
+    const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
+    
+    function getConnectionSpeed() {
+      return 'connection' in navigator && navigator.connection && 'effectiveType' in navigator.connection
+        ? navigator.connection.effectiveType
+        : '';
+    }
+    
+    function sendToAnalytics(metric) {
+      const body = {
+        dsn: 'YOUR_VERCEL_ANALYTICS_ID', // Replace with your analytics ID
+        id: metric.id,
+        page: window.location.pathname,
+        href: window.location.href,
+        event_name: metric.name,
+        value: metric.value.toString(),
+        speed: getConnectionSpeed(),
+      };
+      
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(vitalsUrl, JSON.stringify(body));
+      } else {
+        fetch(vitalsUrl, {
+          body: JSON.stringify(body),
+          method: 'POST',
+          keepalive: true,
+        });
+      }
+      
+      // Also log to console in development
+      if (window.location.hostname === 'localhost') {
+        console.log(`[Web Vital] ${metric.name}:`, metric.value, metric);
+      }
+    }
+    
+    // Largest Contentful Paint (LCP)
+    if ('PerformanceObserver' in window) {
+      try {
+        const lcpObserver = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          
+          sendToAnalytics({
+            name: 'LCP',
+            value: lastEntry.renderTime || lastEntry.loadTime,
+            id: `v3-${Date.now()}-${Math.random()}`,
+            rating: lastEntry.renderTime < 2500 ? 'good' : lastEntry.renderTime < 4000 ? 'needs-improvement' : 'poor'
+          });
+        });
+        
+        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+      } catch (e) {
+        console.error('LCP observer error:', e);
+      }
+      
+      // First Input Delay (FID)
+      try {
+        const fidObserver = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            const delay = entry.processingStart - entry.startTime;
+            
+            sendToAnalytics({
+              name: 'FID',
+              value: delay,
+              id: `v3-${Date.now()}-${Math.random()}`,
+              rating: delay < 100 ? 'good' : delay < 300 ? 'needs-improvement' : 'poor'
+            });
+          });
+        });
+        
+        fidObserver.observe({ type: 'first-input', buffered: true });
+      } catch (e) {
+        console.error('FID observer error:', e);
+      }
+      
+      // Cumulative Layout Shift (CLS)
+      try {
+        let clsValue = 0;
+        let clsEntries = [];
+        
+        const clsObserver = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            if (!entry.hadRecentInput) {
+              const firstSessionEntry = clsEntries[0];
+              const lastSessionEntry = clsEntries[clsEntries.length - 1];
+              
+              if (clsValue && entry.startTime - lastSessionEntry.startTime < 1000 &&
+                  entry.startTime - firstSessionEntry.startTime < 5000) {
+                clsValue += entry.value;
+                clsEntries.push(entry);
+              } else {
+                clsValue = entry.value;
+                clsEntries = [entry];
+              }
+            }
+          });
+        });
+        
+        clsObserver.observe({ type: 'layout-shift', buffered: true });
+        
+        // Report CLS on page hide
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'hidden' && clsValue > 0) {
+            sendToAnalytics({
+              name: 'CLS',
+              value: clsValue,
+              id: `v3-${Date.now()}-${Math.random()}`,
+              rating: clsValue < 0.1 ? 'good' : clsValue < 0.25 ? 'needs-improvement' : 'poor'
+            });
+          }
+        });
+      } catch (e) {
+        console.error('CLS observer error:', e);
+      }
+      
+      // First Contentful Paint (FCP)
+      try {
+        const fcpObserver = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            sendToAnalytics({
+              name: 'FCP',
+              value: entry.startTime,
+              id: `v3-${Date.now()}-${Math.random()}`,
+              rating: entry.startTime < 1800 ? 'good' : entry.startTime < 3000 ? 'needs-improvement' : 'poor'
+            });
+          });
+        });
+        
+        fcpObserver.observe({ type: 'paint', buffered: true });
+      } catch (e) {
+        console.error('FCP observer error:', e);
+      }
+      
+      // Time to First Byte (TTFB)
+      try {
+        const navigationEntry = performance.getEntriesByType('navigation')[0];
+        if (navigationEntry) {
+          const ttfb = navigationEntry.responseStart - navigationEntry.requestStart;
+          
+          sendToAnalytics({
+            name: 'TTFB',
+            value: ttfb,
+            id: `v3-${Date.now()}-${Math.random()}`,
+            rating: ttfb < 800 ? 'good' : ttfb < 1800 ? 'needs-improvement' : 'poor'
+          });
+        }
+      } catch (e) {
+        console.error('TTFB error:', e);
+      }
+    }
+    
+    // Track page load time
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const perfData = performance.timing;
+        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+        
+        if (window.gtag) {
+          window.gtag('event', 'timing_complete', {
+            name: 'page_load',
+            value: pageLoadTime,
+            event_category: 'Performance'
+          });
+        }
+      }, 0);
+    });
+  })();
+</script>

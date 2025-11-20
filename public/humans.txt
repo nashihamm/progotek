@@ -1,0 +1,30 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Developer & SEO Specialist -- ConsultIT Team
+    Site: https://progotek.pages.dev
+    Location: Jakarta, Indonesia
+
+# THANKS
+
+    To all our clients and partners who trust us
+
+# TECHNOLOGY COLOPHON
+
+    Framework: Astro.js 5.15.9
+    CSS Framework: Tailwind CSS
+    Language: TypeScript
+    Fonts: Inter, Material Symbols
+    Analytics: Google Analytics 4
+    Hosting: [Your hosting provider]
+    CDN: [Your CDN provider]
+    
+# STANDARDS
+
+    HTML5, CSS3, ECMAScript 2023
+    Accessibility: WCAG 2.1 Level AA
+    Performance: Core Web Vitals Optimized
+    SEO: Schema.org Structured Data
+    Security: HTTPS, CSP, HSTS

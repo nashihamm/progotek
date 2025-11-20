@@ -1,22 +1,267 @@
 ---
 import '../styles/global.css';
 import Header from '../components/Header.astro';
+import PerformanceMonitor from '../components/PerformanceMonitor.astro';
 
 interface Props {
   title: string;
+  description?: string;
+  image?: string;
+  lang?: string;
+  canonical?: string;
+  type?: 'website' | 'article' | 'product' | 'service';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  keywords?: string[];
+  schema?: any;
+  noindex?: boolean;
 }
 
-const { title } = Astro.props;
+const { 
+  title, 
+  description = "TechCorp adalah mitra strategis Anda dalam menavigasi lanskap teknologi yang terus berkembang. Solusi IT transformatif untuk bisnis modern.",
+  image = "https://progotek.pages.dev/og-image.jpg",
+  lang = "id",
+  canonical,
+  type = "website",
+  publishedTime,  
+  modifiedTime,
+  author = "ConsultIT - TechCorp",
+  keywords = [],
+  schema,
+  noindex = false
+} = Astro.props;
+
+const currentUrl = new URL(Astro.url.pathname, Astro.site || 'https://progotek.pages.dev');
+const canonicalUrl = canonical || currentUrl.href;
+
+// Alternate language URLs
+const alternateLangs = {
+  id: canonicalUrl.replace(/\/(en|id)\//, '/id/'),
+  en: canonicalUrl.replace(/\/(en|id)\//, '/en/'),
+};
+
+// Default keywords
+const defaultKeywords = [
+  'IT consulting', 'cloud solutions', 'cybersecurity', 
+  'software development', 'digital transformation', 'IT services',
+  'enterprise solutions', 'technology consulting', 'business automation'
+];
+const allKeywords = [...new Set([...keywords, ...defaultKeywords])];
+
+// Breadcrumb generation
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbList = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `https://progotek.pages.dev/${lang}/`
+    },
+    ...pathSegments.slice(1).map((segment, index) => ({
+      "@type": "ListItem",
+      "position": index + 2,
+      "name": segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '),
+      "item": `https://progotek.pages.dev/${pathSegments.slice(0, index + 2).join('/')}`
+    }))
+  ]
+};
+
+// WebSite schema with SearchAction
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ConsultIT - TechCorp",
+  "url": "https://progotek.pages.dev",
+  "description": description,
+  "inLanguage": lang === 'id' ? 'id-ID' : 'en-US',
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `https://progotek.pages.dev/${lang}/search?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ConsultIT - TechCorp",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://progotek.pages.dev/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  }
+};
+
+// Organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ConsultIT - TechCorp",
+  "alternateName": "TechCorp",
+  "url": "https://progotek.pages.dev",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://progotek.pages.dev/logo.png",
+    "width": 600,
+    "height": 60
+  },
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Technology St.",
+    "addressLocality": "Jakarta",
+    "addressRegion": "DKI Jakarta",
+    "postalCode": "12345",
+    "addressCountry": "ID"
+  },
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+62-21-1234-5678",
+    "contactType": "customer service",
+    "email": "info@progotek.pages.dev",
+    "availableLanguage": ["Indonesian", "English"],
+    "areaServed": ["ID", "SG", "MY", "TH", "PH"],
+    "contactOption": "TollFree"
+  }, {
+    "@type": "ContactPoint",
+    "telephone": "+62-21-1234-5679",
+    "contactType": "sales",
+    "email": "sales@progotek.pages.dev",
+    "availableLanguage": ["Indonesian", "English"]
+  }],
+  "sameAs": [
+    "https://linkedin.com/company/consultit",
+    "https://twitter.com/consultit",
+    "https://facebook.com/consultit",
+    "https://instagram.com/consultit",
+    "https://github.com/consultit"
+  ],
+  "foundingDate": "2010-01-15",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": 50
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "award": [
+    "Best IT Consulting Firm 2023",
+    "Innovation Excellence Award 2022",
+    "Customer Service Excellence 2021"
+  ],
+  "knowsAbout": [
+    "Cloud Computing",
+    "Cybersecurity",
+    "Software Development",
+    "Digital Transformation",
+    "IT Infrastructure",
+    "Data Analytics",
+    "AI & Machine Learning"
+  ]
+};
 ---
 
 <!DOCTYPE html>
-<html class="light" lang="id">
+<html class="light" lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={allKeywords.join(', ')} />
+    <meta name="author" content={author} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="ID-JK" />
+    <meta name="geo.placename" content="Jakarta" />
+    <meta name="geo.position" content="-6.2088;106.8456" />
+    <meta name="ICBM" content="-6.2088, 106.8456" />
+    
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="id" href={alternateLangs.id} />
+    <link rel="alternate" hreflang="en" href={alternateLangs.en} />
+    <link rel="alternate" hreflang="x-default" href={alternateLangs.id} />
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="ConsultIT Blog RSS Feed" href={`https://progotek.pages.dev/${lang}/rss.xml`} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'id' ? 'en_US' : 'id_ID'} />
+    <meta property="og:site_name" content="ConsultIT - TechCorp" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {author && <meta property="article:author" content={author} />}
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@consultit" />
+    <meta name="twitter:creator" content="@consultit" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image:alt" content={title} />
+    
+    <!-- LinkedIn -->
+    <meta property="og:image:type" content="image/jpeg" />
+    
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0066FF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0052CC" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ConsultIT" />
+    
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" as="style" />
+    
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -25,10 +270,80 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(organizationSchema)} />
+    
+    <!-- Structured Data - WebSite -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
+    
+    <!-- Structured Data - Breadcrumb -->
+    {pathSegments.length > 1 && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbList)} />
+    )}
+    
+    <!-- Custom Schema (if provided) -->
+    {schema && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+    )}
+    
+    <!-- Google Analytics 4 (Replace with your GA4 ID) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        page_path: window.location.pathname,
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+    </script>
+    
+    <!-- Microsoft Clarity (Optional) -->
+    <script is:inline type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
+    </script>
+    
+    <!-- Performance Monitoring -->
+    <script is:inline>
+      // Web Vitals monitoring
+      if ('PerformanceObserver' in window) {
+        // Monitor LCP
+        new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
+        }).observe({entryTypes: ['largest-contentful-paint']});
+        
+        // Monitor FID
+        new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            console.log('FID:', entry.processingStart - entry.startTime);
+          });
+        }).observe({entryTypes: ['first-input']});
+        
+        // Monitor CLS
+        let clsScore = 0;
+        new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            if (!entry.hadRecentInput) {
+              clsScore += entry.value;
+              console.log('CLS:', clsScore);
+            }
+          });
+        }).observe({entryTypes: ['layout-shift']});
+      }
+    </script>
   </head>
   <body
     class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark antialiased selection:bg-primary/20"
   >
+  <PerformanceMonitor />
   <header class="sticky top-0 z-50 mb-4">
     <Header />
   </header>

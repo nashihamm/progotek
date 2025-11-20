@@ -1,0 +1,67 @@
+---
+interface Service {
+  name: string;
+  description: string;
+  url: string;
+  price?: string;
+  image?: string;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+
+const serviceSchemas = services.map(service => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": service.name,
+  "name": service.name,
+  "description": service.description,
+  "provider": {
+    "@type": "Organization",
+    "name": "ConsultIT - TechCorp",
+    "url": "https://progotek.pages.dev"
+  },
+  "url": service.url,
+  "areaServed": {
+    "@type": "Country",
+    "name": ["Indonesia", "Singapore", "Malaysia", "Thailand", "Philippines"]
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": service.url,
+    "servicePhone": "+62-21-1234-5678",
+    "serviceLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Technology St.",
+        "addressLocality": "Jakarta",
+        "addressCountry": "ID"
+      }
+    }
+  },
+  ...(service.price && {
+    "offers": {
+      "@type": "Offer",
+      "price": service.price,
+      "priceCurrency": "IDR",
+      "availability": "https://schema.org/InStock"
+    }
+  }),
+  ...(service.image && {
+    "image": service.image
+  }),
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127"
+  }
+}));
+---
+
+{serviceSchemas.map(schema => (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+))}
